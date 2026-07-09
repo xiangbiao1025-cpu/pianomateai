@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PianoMate AI - AI Self-Playing Piano</title>
+  <meta name="description" content="Turn any piano into an AI self-playing piano. PianoMate AI is an external automatic piano playing system for real acoustic pianos." />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #080808;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    header {
+      padding: 24px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 90px 8%;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 56px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .subtitle {
+      font-size: 22px;
+      color: #cfcfcf;
+      max-width: 760px;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 16px 28px;
+      background: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+    section {
+      padding: 60px 8%;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #151515;
+      padding: 28px;
+      border-radius: 18px;
+      border: 1px solid #292929;
+    }
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 18px;
+      background: #111;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #111;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 14px 24px;
+      border: 0;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      padding: 40px 8%;
+      color: #999;
+      border-top: 1px solid #222;
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 38px;
+      }
+      .subtitle {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PianoMate AI</div>
+    <div>Coming Soon</div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>Turn Any Piano Into an AI Self-Playing Piano</h1>
+      <p class="subtitle">
+        PianoMate AI sits on a real acoustic piano and plays automatically.
+        No permanent modification, no complex installation — just real piano sound powered by AI music conversion.
+      </p>
+      <a class="button" href="#waitlist">Join the Crowdfunding Waitlist</a>
+    </div>
+
+    <section>
+      <h2>How It Works</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>1. Upload Music</h3>
+          <p>Use piano audio, video, or MIDI files as the source.</p>
+        </div>
+        <div class="card">
+          <h3>2. AI Converts</h3>
+          <p>AI analyzes the music and converts it into PianoMate playback data.</p>
+        </div>
+        <div class="card">
+          <h3>3. Real Piano Plays</h3>
+          <p>PianoMate physically plays the keys on a real piano.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Demo Video</h2>
+      <p>Replace this with your YouTube demo video later.</p>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="PianoMate AI Demo" allowfullscreen></iframe>
+    </section>
+
+    <section>
+      <h2>Key Features</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>No Piano Modification</h3>
+          <p>External placement design without changing the piano structure.</p>
+        </div>
+        <div class="card">
+          <h3>AI Music Conversion</h3>
+          <p>Supports MP4, MP3, WAV, and MIDI source files for AI-based conversion.</p>
+        </div>
+        <div class="card">
+          <h3>Bluetooth Control</h3>
+          <p>Control playback from a phone with Bluetooth connectivity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="waitlist">
+      <h2>Join the Crowdfunding Waitlist</h2>
+      <p>Leave your email to receive early-bird updates.</p>
+
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Your name" />
+        <input type="email" name="email" placeholder="Your email" required />
+        <select name="interest">
+          <option>I am interested in buying PianoMate AI</option>
+          <option>I want crowdfunding updates</option>
+          <option>I am interested in beta testing</option>
+          <option>I am interested in partnership or press</option>
+        </select>
+        <textarea name="message" placeholder="Message"></textarea>
+        <button type="submit">Join Waitlist</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    Contact: xiangbiao1025@gmail.com<br />
+    © 2026 PianoMate AI
+  </footer>
+</body>
+</html>
