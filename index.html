@@ -268,10 +268,18 @@
     .demo-link {
       position: relative;
       display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
       overflow: hidden;
+      border: 0;
       border-radius: 18px;
       background: #111;
+      color: inherit;
       text-decoration: none;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
     }
 
     .demo-cover {
@@ -319,6 +327,74 @@
     .demo-caption { padding: 14px 8px 5px; }
     .demo-caption strong { display: block; font-size: 18px; }
     .demo-caption span { color: var(--muted); font-size: 14px; }
+
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .video-modal.is-open { display: flex; }
+
+    .video-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      backdrop-filter: blur(8px);
+    }
+
+    .video-modal-dialog {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 500px);
+    }
+
+    .video-modal-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #000;
+      box-shadow: 0 30px 100px rgba(0,0,0,.7);
+    }
+
+    .video-modal-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      background: #fff;
+      color: #000;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    body.modal-open { overflow: hidden; }
+
+    @media (max-width: 600px) {
+      .video-modal { padding: 12px; }
+      .video-modal-dialog { width: min(88vw, 420px); }
+      .video-modal-close { top: 8px; right: 8px; }
+    }
 
     .specs {
       display: grid;
@@ -513,24 +589,24 @@
 
       <div class="demo-grid">
         <article class="demo-item">
-          <a class="demo-link" href="https://www.youtube.com/shorts/2ssWj0s6C9M" target="_blank" rel="noopener noreferrer" aria-label="Watch PianoMate perform Jasmine Flower on YouTube">
+          <button class="demo-link video-trigger" type="button" data-video-id="2ssWj0s6C9M" aria-label="Play PianoMate performing Jasmine Flower">
             <img class="demo-cover" src="jasmine-flower-cover.png" alt="Jasmine Flower performance cover" />
             <span class="demo-overlay" aria-hidden="true"><span class="play-button">▶</span></span>
-          </a>
+          </button>
           <div class="demo-caption">
             <strong>Jasmine Flower</strong>
-            <span>Real PianoMate automatic piano performance · Watch on YouTube</span>
+            <span>Real PianoMate automatic piano performance · Play here</span>
           </div>
         </article>
 
         <article class="demo-item">
-          <a class="demo-link" href="https://youtube.com/shorts/WCojKik9NQQ" target="_blank" rel="noopener noreferrer" aria-label="Watch PianoMate perform Für Elise on YouTube">
+          <button class="demo-link video-trigger" type="button" data-video-id="WCojKik9NQQ" aria-label="Play PianoMate performing Für Elise">
             <img class="demo-cover" src="fur-elise-cover.png" alt="Für Elise performance cover" />
             <span class="demo-overlay" aria-hidden="true"><span class="play-button">▶</span></span>
-          </a>
+          </button>
           <div class="demo-caption">
             <strong>Für Elise</strong>
-            <span>Real PianoMate automatic piano performance · Watch on YouTube</span>
+            <span>Real PianoMate automatic piano performance · Play here</span>
           </div>
         </article>
       </div>
@@ -578,7 +654,7 @@
 
       <div class="card">
         <div class="specs">
-          <div class="spec"><span>Product name</span><strong>PianoMate AI</strong></div>
+          <div class="spec"><span>Product name</span><strong>PianoMate</strong></div>
           <div class="spec"><span>Product type</span><strong>External self-playing piano system</strong></div>
           <div class="spec"><span>Dimensions</span><strong>1288 × 100 × 80 mm</strong></div>
           <div class="spec"><span>Weight</span><strong>Approx. 11 kg</strong></div>
@@ -606,7 +682,7 @@
           <input type="email" name="email" placeholder="Your email address" required />
 
           <select name="interest">
-            <option value="buyer">I am interested in buying PianoMate AI</option>
+            <option value="buyer">I am interested in buying PianoMate</option>
             <option value="crowdfunding">I want crowdfunding updates</option>
             <option value="beta">I am interested in beta testing</option>
             <option value="partner">I am interested in partnership</option>
@@ -667,5 +743,48 @@
     <a href="mailto:xiangbiao1025@gmail.com">xiangbiao1025@gmail.com</a><br />
     © 2026 PianoMate AI. All rights reserved.
   </footer>
+
+  <div class="video-modal" id="videoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="PianoMate performance video">
+    <div class="video-modal-backdrop" data-close-video></div>
+    <div class="video-modal-dialog">
+      <button class="video-modal-close" type="button" data-close-video aria-label="Close video">×</button>
+      <div class="video-modal-frame">
+        <iframe id="modalVideo" src="" title="PianoMate performance video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const videoTriggers = document.querySelectorAll('.video-trigger');
+    const closeVideoButtons = document.querySelectorAll('[data-close-video]');
+
+    function openVideo(videoId) {
+      modalVideo.src = 'https://www.youtube.com/embed/' + encodeURIComponent(videoId) + '?autoplay=1&rel=0&playsinline=1';
+      videoModal.classList.add('is-open');
+      videoModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    }
+
+    function closeVideo() {
+      videoModal.classList.remove('is-open');
+      videoModal.setAttribute('aria-hidden', 'true');
+      modalVideo.src = '';
+      document.body.classList.remove('modal-open');
+    }
+
+    videoTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => openVideo(trigger.dataset.videoId));
+    });
+
+    closeVideoButtons.forEach((button) => {
+      button.addEventListener('click', closeVideo);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && videoModal.classList.contains('is-open')) closeVideo();
+    });
+  </script>
 </body>
 </html>
