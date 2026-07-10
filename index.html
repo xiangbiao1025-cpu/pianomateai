@@ -265,14 +265,56 @@
       box-shadow: 0 24px 65px rgba(0,0,0,.35);
     }
 
-    .demo-item iframe {
+    .demo-link {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #111;
+      text-decoration: none;
+    }
+
+    .demo-cover {
       width: 100%;
       aspect-ratio: 9 / 16;
-      border: 0;
-      border-radius: 18px;
+      object-fit: cover;
       display: block;
-      background: #111;
+      transition: transform .35s ease, filter .35s ease;
     }
+
+    .demo-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.42));
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .play-button {
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #000;
+      background: rgba(255,255,255,.94);
+      font-size: 29px;
+      line-height: 1;
+      box-shadow: 0 12px 34px rgba(0,0,0,.35);
+      transform: translateY(8px);
+      transition: transform .25s ease;
+    }
+
+    .demo-link:hover .demo-cover {
+      transform: scale(1.035);
+      filter: brightness(.82);
+    }
+
+    .demo-link:hover .demo-overlay { opacity: 1; }
+    .demo-link:hover .play-button { transform: translateY(0); }
 
     .demo-caption { padding: 14px 8px 5px; }
     .demo-caption strong { display: block; font-size: 18px; }
@@ -471,30 +513,24 @@
 
       <div class="demo-grid">
         <article class="demo-item">
-          <iframe
-            src="https://www.youtube.com/embed/2ssWj0s6C9M"
-            title="PianoMate performs Jasmine Flower"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-          </iframe>
+          <a class="demo-link" href="https://www.youtube.com/shorts/2ssWj0s6C9M" target="_blank" rel="noopener noreferrer" aria-label="Watch PianoMate perform Jasmine Flower on YouTube">
+            <img class="demo-cover" src="jasmine-flower-cover.png" alt="Jasmine Flower performance cover" />
+            <span class="demo-overlay" aria-hidden="true"><span class="play-button">▶</span></span>
+          </a>
           <div class="demo-caption">
             <strong>Jasmine Flower</strong>
-            <span>Real PianoMate automatic piano performance</span>
+            <span>Real PianoMate automatic piano performance · Watch on YouTube</span>
           </div>
         </article>
 
         <article class="demo-item">
-          <iframe
-            src="https://www.youtube.com/embed/WCojKik9NQQ"
-            title="PianoMate performs Für Elise"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-          </iframe>
+          <a class="demo-link" href="https://youtube.com/shorts/WCojKik9NQQ" target="_blank" rel="noopener noreferrer" aria-label="Watch PianoMate perform Für Elise on YouTube">
+            <img class="demo-cover" src="fur-elise-cover.png" alt="Für Elise performance cover" />
+            <span class="demo-overlay" aria-hidden="true"><span class="play-button">▶</span></span>
+          </a>
           <div class="demo-caption">
             <strong>Für Elise</strong>
-            <span>Real PianoMate automatic piano performance</span>
+            <span>Real PianoMate automatic piano performance · Watch on YouTube</span>
           </div>
         </article>
       </div>
@@ -564,7 +600,7 @@
           <p class="small">Your email will only be used for PianoMate AI updates.</p>
         </div>
 
-        <!-- Formspree：将 YOUR_FORM_ID 替换成 Formspree 提供的表单 ID。 -->
+        <!-- Form submissions are handled by Formspree. -->
         <form action="https://formspree.io/f/mnjkejpg" method="POST">
           <input type="text" name="name" placeholder="Your name" />
           <input type="email" name="email" placeholder="Your email address" required />
