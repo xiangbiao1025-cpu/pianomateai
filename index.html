@@ -4,16 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>PianoMate AI - AI Self-Playing Piano for Real Acoustic Pianos</title>
-  <meta name="description" content="PianoMate AI is an external AI self-playing piano system that sits on a real acoustic piano. No permanent modification, AI music conversion, Bluetooth control, and real acoustic piano sound." />
+  <title>PianoMate AI — AI Self-Playing Piano for Real Acoustic Pianos</title>
+  <meta name="description" content="PianoMate AI is an external automatic piano-playing system for real acoustic pianos. Watch the concept video and real PianoMate performances." />
+  <meta name="theme-color" content="#050505" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="PianoMate AI - AI Self-Playing Piano" />
-  <meta property="og:description" content="Turn a real acoustic piano into an AI self-playing piano. No permanent modification. Coming soon for crowdfunding." />
+  <meta property="og:title" content="PianoMate AI — AI Self-Playing Piano" />
+  <meta property="og:description" content="Turn a real acoustic piano into an AI self-playing piano without permanent modification." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.pianomateai.com" />
+  <meta property="og:url" content="https://www.pianomateai.com/" />
+  <meta property="og:image" content="https://www.pianomateai.com/pianomate-hero.jpeg" />
 
-  <!-- Google Analytics: replace G-XXXXXXXXXX later -->
+  <!-- GA4：申请后，将下面两处 G-XXXXXXXXXX 替换为真实 Measurement ID，并删除注释。 -->
   <!--
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -27,245 +28,183 @@
   <style>
     :root {
       --bg: #050505;
-      --bg2: #0d0d0f;
+      --bg-soft: #0c0c0e;
       --card: #151518;
-      --card2: #1d1d22;
       --text: #ffffff;
-      --muted: #b8b8c2;
+      --muted: #b9b9c2;
       --line: #2a2a31;
-      --accent: #ffffff;
-      --soft: #f3f3f5;
       --gold: #d9b86c;
+      --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.08), transparent 26%),
-        radial-gradient(circle at 80% 10%, rgba(217,184,108,0.10), transparent 25%),
-        var(--bg);
       color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.08), transparent 27%),
+        radial-gradient(circle at 82% 8%, rgba(217,184,108,.10), transparent 26%),
+        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-    }
+    a { color: inherit; }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(5, 5, 5, 0.78);
+      z-index: 30;
       border-bottom: 1px solid var(--line);
+      background: rgba(5,5,5,.82);
+      backdrop-filter: blur(16px);
     }
 
     .nav {
-      max-width: 1180px;
+      max-width: var(--max);
       margin: auto;
-      padding: 18px 24px;
+      padding: 17px 24px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 24px;
     }
 
     .logo {
       font-size: 24px;
       font-weight: 800;
-      letter-spacing: -0.04em;
+      letter-spacing: -.04em;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 24px;
       color: var(--muted);
       font-size: 14px;
     }
 
-    .nav-links a {
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: #fff; }
 
     .hero {
-      max-width: 1180px;
+      max-width: var(--max);
       margin: auto;
-      padding: 110px 24px 80px;
+      padding: 92px 24px 72px;
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 56px;
+      grid-template-columns: 1.03fr .97fr;
+      gap: 54px;
       align-items: center;
     }
 
     .eyebrow {
       display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--gold);
-      border: 1px solid rgba(217,184,108,0.38);
-      background: rgba(217,184,108,0.08);
       padding: 8px 14px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(217,184,108,.38);
       border-radius: 999px;
+      color: var(--gold);
+      background: rgba(217,184,108,.08);
       font-size: 14px;
-      margin-bottom: 24px;
     }
 
     h1 {
-      font-size: clamp(44px, 6vw, 78px);
-      line-height: 0.98;
-      letter-spacing: -0.07em;
-      margin: 0 0 26px;
+      margin: 0 0 25px;
+      font-size: clamp(44px, 6vw, 76px);
+      line-height: .99;
+      letter-spacing: -.07em;
     }
 
     .subtitle {
-      font-size: 21px;
-      color: var(--muted);
       max-width: 720px;
-      margin-bottom: 34px;
+      margin: 0 0 32px;
+      color: var(--muted);
+      font-size: 20px;
     }
 
     .cta-row {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
-      align-items: center;
+      gap: 13px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 15px 24px;
+      padding: 15px 23px;
+      border: 1px solid transparent;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 800;
-      border: 1px solid transparent;
-      transition: 0.2s ease;
+      transition: .2s ease;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 35px rgba(255,255,255,0.14);
-    }
-
-    .btn-secondary {
-      border-color: var(--line);
-      color: var(--soft);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .btn-secondary:hover {
-      border-color: #fff;
-    }
+    .btn-primary { background: #fff; color: #000; }
+    .btn-secondary { border-color: var(--line); background: rgba(255,255,255,.04); }
+    .btn:hover { transform: translateY(-2px); }
 
     .hero-card {
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)),
-        var(--card);
+      padding: 14px;
       border: 1px solid var(--line);
       border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      background: linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      box-shadow: 0 30px 80px rgba(0,0,0,.38);
     }
 
-    .piano-visual {
-      height: 310px;
-      border-radius: 22px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)),
-        repeating-linear-gradient(90deg, #f5f5f5 0 28px, #dedede 28px 30px, #111 30px 42px, #f5f5f5 42px 58px);
-      position: relative;
-      overflow: hidden;
+    .hero-image {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 20px;
     }
 
-    .device-bar {
-      position: absolute;
-      left: 7%;
-      right: 7%;
-      top: 34px;
-      height: 72px;
-      border-radius: 18px;
-      background: linear-gradient(90deg, #f6f6f6, #cfcfcf);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+    .image-note {
+      margin: 12px 8px 2px;
+      color: #8d8d96;
+      font-size: 12px;
+      text-align: center;
     }
-
-    .device-light {
-      position: absolute;
-      width: 11px;
-      height: 11px;
-      border-radius: 999px;
-      background: #36ff99;
-      box-shadow: 0 0 16px #36ff99;
-      top: 64px;
-    }
-
-    .device-light:nth-child(2) { left: 18%; }
-    .device-light:nth-child(3) { left: 35%; }
-    .device-light:nth-child(4) { left: 52%; }
-    .device-light:nth-child(5) { left: 69%; }
-    .device-light:nth-child(6) { left: 84%; }
 
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .stat {
-      background: rgba(255,255,255,0.05);
+      padding: 15px;
       border: 1px solid var(--line);
       border-radius: 16px;
-      padding: 16px;
+      background: rgba(255,255,255,.045);
     }
 
-    .stat strong {
-      display: block;
-      font-size: 22px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 13px;
-    }
+    .stat strong { display: block; font-size: 20px; }
+    .stat span { color: var(--muted); font-size: 13px; }
 
     section {
-      max-width: 1180px;
+      max-width: var(--max);
       margin: auto;
-      padding: 78px 24px;
+      padding: 76px 24px;
     }
 
     .section-title {
+      margin: 0 0 17px;
       font-size: clamp(32px, 4vw, 52px);
       line-height: 1.05;
-      letter-spacing: -0.05em;
-      margin: 0 0 18px;
+      letter-spacing: -.05em;
     }
 
     .section-desc {
+      max-width: 790px;
+      margin: 0 0 34px;
       color: var(--muted);
       font-size: 18px;
-      max-width: 780px;
-      margin-bottom: 34px;
     }
 
     .grid {
@@ -275,75 +214,74 @@
     }
 
     .card {
-      background: rgba(21,21,24,0.88);
+      padding: 27px;
       border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 28px;
+      border-radius: 23px;
+      background: rgba(21,21,24,.9);
     }
 
-    .card h3 {
-      font-size: 22px;
-      margin: 0 0 12px;
-      letter-spacing: -0.03em;
-    }
+    .card h3 { margin: 0 0 11px; font-size: 21px; }
+    .card p { margin: 0; color: var(--muted); }
 
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .steps {
-      counter-reset: step;
-    }
-
-    .step {
-      position: relative;
-    }
-
+    .steps { counter-reset: step; }
     .step::before {
       counter-increment: step;
       content: "0" counter(step);
       display: inline-block;
+      margin-bottom: 16px;
       color: var(--gold);
       font-weight: 800;
-      margin-bottom: 18px;
     }
 
-    .video-box {
-      border: 1px solid var(--line);
-      border-radius: 28px;
+    .concept-video {
+      width: min(100%, 960px);
+      margin: auto;
       overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 27px;
       background: #111;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.38);
+      box-shadow: 0 26px 75px rgba(0,0,0,.4);
     }
 
-    iframe {
+    .concept-video iframe {
       width: 100%;
       aspect-ratio: 16 / 9;
       border: 0;
       display: block;
     }
 
-    .placeholder-video {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: 0;
-      display: flex;
-      align-items: center;
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 360px));
+      gap: 26px;
       justify-content: center;
-      text-align: center;
-      padding: 30px;
-      background:
-        radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 35%),
-        #101014;
-      color: var(--muted);
-      font-size: 18px;
     }
+
+    .demo-item {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: var(--card);
+      box-shadow: 0 24px 65px rgba(0,0,0,.35);
+    }
+
+    .demo-item iframe {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border: 0;
+      border-radius: 18px;
+      display: block;
+      background: #111;
+    }
+
+    .demo-caption { padding: 14px 8px 5px; }
+    .demo-caption strong { display: block; font-size: 18px; }
+    .demo-caption span { color: var(--muted); font-size: 14px; }
 
     .specs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 0 28px;
     }
 
     .spec {
@@ -354,42 +292,37 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .spec span {
-      color: var(--muted);
-    }
+    .spec span { color: var(--muted); }
+    .spec strong { text-align: right; }
 
     .waitlist {
       display: grid;
-      grid-template-columns: 0.88fr 1.12fr;
+      grid-template-columns: .9fr 1.1fr;
       gap: 34px;
       align-items: start;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      padding: 36px;
       border: 1px solid var(--line);
       border-radius: 30px;
-      padding: 36px;
+      background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
     }
 
     input, select, textarea {
       width: 100%;
+      margin: 8px 0;
       padding: 15px 16px;
-      margin: 9px 0;
+      border: 1px solid #34343b;
       border-radius: 14px;
-      border: 1px solid #33343a;
-      background: #0c0c0f;
       color: #fff;
+      background: #0c0c0f;
       font-size: 15px;
     }
 
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
+    textarea { min-height: 108px; resize: vertical; }
 
     button {
       width: 100%;
-      padding: 16px 24px;
       margin-top: 10px;
+      padding: 16px 24px;
       border: 0;
       border-radius: 999px;
       background: #fff;
@@ -399,82 +332,49 @@
       cursor: pointer;
     }
 
-    .small {
-      color: #888;
-      font-size: 13px;
-      margin-top: 12px;
-    }
+    .small { margin-top: 12px; color: #8c8c95; font-size: 13px; }
 
-    .faq {
-      display: grid;
-      gap: 14px;
-    }
-
+    .faq { display: grid; gap: 14px; }
     details {
-      background: rgba(21,21,24,0.88);
+      padding: 20px 22px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 20px 22px;
+      background: rgba(21,21,24,.9);
     }
-
-    summary {
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 18px;
-    }
-
-    details p {
-      color: var(--muted);
-      margin-bottom: 0;
-    }
+    summary { cursor: pointer; font-size: 18px; font-weight: 800; }
+    details p { margin-bottom: 0; color: var(--muted); }
 
     footer {
+      padding: 42px 24px;
       border-top: 1px solid var(--line);
-      padding: 40px 24px;
-      text-align: center;
       color: var(--muted);
+      text-align: center;
     }
-
-    footer strong {
-      color: var(--text);
-    }
+    footer strong { color: #fff; }
 
     @media (max-width: 900px) {
-      .hero,
-      .waitlist {
-        grid-template-columns: 1fr;
-      }
+      .hero, .waitlist { grid-template-columns: 1fr; }
+      .grid, .specs { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding-top: 65px; }
+      .hero-stats { grid-template-columns: 1fr; }
+    }
 
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .specs {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 70px;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 700px) {
+      .demo-grid { grid-template-columns: 1fr; }
+      .waitlist { padding: 25px; }
+      h1 { letter-spacing: -.055em; }
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="nav">
       <div class="logo">PianoMate AI</div>
       <nav class="nav-links">
         <a href="#how">How It Works</a>
-        <a href="#demo">Demo</a>
+        <a href="#concept">Concept Video</a>
+        <a href="#real-demos">Real Demos</a>
         <a href="#features">Features</a>
         <a href="#specs">Specs</a>
         <a href="#waitlist">Waitlist</a>
@@ -488,192 +388,168 @@
         <div class="eyebrow">Coming soon for crowdfunding</div>
         <h1>Turn a Real Piano Into an AI Self-Playing Piano</h1>
         <p class="subtitle">
-          PianoMate AI is an external automatic piano-playing system designed for real acoustic pianos.
-          It plays the keys physically, preserves the original piano sound, and requires no permanent modification.
+          PianoMate AI is an external automatic piano-playing system for real acoustic pianos.
+          It physically presses the keys, preserves the piano's original acoustic sound, and requires no permanent modification.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#waitlist">Join the Crowdfunding Waitlist</a>
-          <a class="btn btn-secondary" href="#demo">Watch Demo</a>
+          <a class="btn btn-secondary" href="#real-demos">Watch Real Demos</a>
         </div>
       </div>
 
       <div class="hero-card">
-        <div class="piano-visual">
-          <div class="device-bar">
-            <span class="device-light"></span>
-            <span class="device-light"></span>
-            <span class="device-light"></span>
-            <span class="device-light"></span>
-            <span class="device-light"></span>
-          </div>
-        </div>
+        <img
+          class="hero-image"
+          src="pianomate-hero.jpeg"
+          alt="PianoMate AI product concept shown on a grand piano in a modern living room"
+        />
+        <div class="image-note">Product concept visualization</div>
 
         <div class="hero-stats">
           <div class="stat">
-            <strong>11 kg</strong>
-            <span>Prototype weight</span>
+            <strong>≈ 11 kg</strong>
+            <span>Current prototype weight</span>
           </div>
           <div class="stat">
             <strong>Bluetooth 5.0</strong>
-            <span>Phone control</span>
+            <span>Phone-based control</span>
           </div>
           <div class="stat">
             <strong>No drilling</strong>
-            <span>External placement</span>
+            <span>External removable design</span>
           </div>
         </div>
       </div>
     </section>
 
     <section id="how">
-      <h2 class="section-title">From music file to real piano performance.</h2>
+      <h2 class="section-title">From a music file to a real piano performance.</h2>
       <p class="section-desc">
-        PianoMate AI is designed to make real acoustic piano playback easier.
-        Upload music, let AI convert it, then let PianoMate physically play the keys.
+        PianoMate AI combines a desktop conversion workflow with an external piano-playing device.
+        Music is converted into playback data, then PianoMate physically actuates the keys of a real acoustic piano.
       </p>
 
       <div class="grid steps">
         <div class="card step">
           <h3>Upload music</h3>
-          <p>Start with piano audio, video, or MIDI files, including MP4, MP3, WAV, and MIDI sources.</p>
+          <p>Start with piano-focused MP4, MP3, WAV, or MIDI files.</p>
         </div>
         <div class="card step">
           <h3>AI converts</h3>
           <p>The desktop converter analyzes the music and prepares PianoMate playback data.</p>
         </div>
         <div class="card step">
-          <h3>Real piano plays</h3>
-          <p>PianoMate sits on the piano and physically actuates the keys for real acoustic sound.</p>
+          <h3>The real piano plays</h3>
+          <p>PianoMate physically presses the keys, allowing the sound to come from the acoustic piano itself.</p>
         </div>
       </div>
     </section>
 
-    <section id="demo">
-      <h2 class="section-title">See PianoMate AI in action.</h2>
+    <section id="concept">
+      <h2 class="section-title">PianoMate AI promotional concept video.</h2>
       <p class="section-desc">
-        Add your real YouTube demo here after uploading a video. For crowdfunding, a real acoustic piano demo is more important than perfect website design.
+        This visual presentation shows the intended home experience and product positioning.
+        Real working-device demonstrations are shown in the next section.
       </p>
 
-      <div class="video-box">
-        <!-- Replace VIDEO_ID with your YouTube video ID -->
-        <!-- Example: https://www.youtube.com/watch?v=abc123 -> VIDEO_ID is abc123 -->
-        <!--
+      <div class="concept-video">
         <iframe
-          src="https://www.youtube.com/embed/VIDEO_ID"
-          title="PianoMate AI Demo"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          src="https://www.youtube.com/embed/fVa50rIeSQU"
+          title="PianoMate AI Promotional Concept Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
-        -->
+      </div>
+    </section>
 
-        <div class="placeholder-video">
-          YouTube demo video placeholder<br />
-          Replace this area with your PianoMate AI performance video.
-        </div>
+    <section id="real-demos">
+      <h2 class="section-title">Real PianoMate performances.</h2>
+      <p class="section-desc">
+        These videos show the actual PianoMate device physically playing a real piano.
+      </p>
+
+      <div class="demo-grid">
+        <article class="demo-item">
+          <iframe
+            src="https://www.youtube.com/embed/2ssWj0s6C9M"
+            title="PianoMate performs Jasmine Flower"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+          <div class="demo-caption">
+            <strong>Jasmine Flower</strong>
+            <span>Real PianoMate automatic piano performance</span>
+          </div>
+        </article>
+
+        <article class="demo-item">
+          <iframe
+            src="https://www.youtube.com/embed/WCojKik9NQQ"
+            title="PianoMate performs Für Elise"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+          <div class="demo-caption">
+            <strong>Für Elise</strong>
+            <span>Real PianoMate automatic piano performance</span>
+          </div>
+        </article>
       </div>
     </section>
 
     <section id="features">
-      <h2 class="section-title">Built for simple, removable, real-piano playback.</h2>
+      <h2 class="section-title">Built for removable, real-piano playback.</h2>
       <p class="section-desc">
-        The first version of PianoMate AI focuses on a clear promise: real acoustic piano sound, external installation, and AI-assisted music conversion.
+        The current PianoMate prototype focuses on simple external placement, AI-assisted music conversion, and real acoustic piano sound.
       </p>
 
       <div class="grid">
         <div class="card">
           <h3>Non-destructive setup</h3>
-          <p>No permanent modification to the piano structure. Designed as an external system that can be placed and removed.</p>
+          <p>No permanent structural modification. The device is designed to sit externally on the piano and be removed when needed.</p>
         </div>
-
         <div class="card">
-          <h3>AI music conversion</h3>
-          <p>Convert MP4, MP3, WAV, or MIDI sources into PianoMate playback data for real piano performance.</p>
+          <h3>AI-assisted conversion</h3>
+          <p>The desktop workflow supports MP4, MP3, WAV, and MIDI sources for preparation of PianoMate playback files.</p>
         </div>
-
         <div class="card">
           <h3>Real acoustic sound</h3>
-          <p>Instead of speaker playback, PianoMate physically plays a real piano, preserving the instrument’s natural tone.</p>
+          <p>PianoMate physically plays the keys instead of reproducing piano sound through ordinary speakers.</p>
         </div>
-
         <div class="card">
           <h3>Phone control</h3>
-          <p>Use a phone as the controller for playback and device interaction through Bluetooth connectivity.</p>
+          <p>Playback and device operation are designed to be controlled through Bluetooth connectivity.</p>
         </div>
-
         <div class="card">
-          <h3>Portable concept</h3>
-          <p>The product concept includes accessories such as a movable trolley and a hard carrying case for easier handling.</p>
+          <h3>Removable design</h3>
+          <p>The current product is intended to be placed on the piano by hand and removed when it is not in use.</p>
         </div>
-
         <div class="card">
-          <h3>For demos and homes</h3>
-          <p>Designed for home entertainment, music education, piano stores, content creators, and acoustic piano demonstrations.</p>
+          <h3>Multiple use cases</h3>
+          <p>Suitable for home entertainment, piano demonstrations, music education, events, and video content creation.</p>
         </div>
       </div>
     </section>
 
     <section id="specs">
-      <h2 class="section-title">Prototype specifications.</h2>
+      <h2 class="section-title">Current prototype specifications.</h2>
       <p class="section-desc">
-        These are current prototype-level specifications and may be refined before the final crowdfunding version.
+        These specifications describe the present prototype and may be refined before a future crowdfunding production version.
       </p>
 
       <div class="card">
         <div class="specs">
-          <div class="spec">
-            <span>Product name</span>
-            <strong>PianoMate AI</strong>
-          </div>
-          <div class="spec">
-            <span>Product type</span>
-            <strong>External self-playing piano system</strong>
-          </div>
-          <div class="spec">
-            <span>Dimensions</span>
-            <strong>1288 × 100 × 80 mm</strong>
-          </div>
-          <div class="spec">
-            <span>Weight</span>
-            <strong>Approx. 11 kg</strong>
-          </div>
-          <div class="spec">
-            <span>Connectivity</span>
-            <strong>Bluetooth 5.0</strong>
-          </div>
-          <div class="spec">
-            <span>Control distance</span>
-            <strong>Up to 100m+</strong>
-          </div>
-          <div class="spec">
-            <span>Input sources</span>
-            <strong>MP4 / MP3 / WAV / MIDI</strong>
-          </div>
-          <div class="spec">
-            <span>Accessories concept</span>
-            <strong>Trolley / hard carrying case</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="use-cases">
-      <h2 class="section-title">Who is it for?</h2>
-      <p class="section-desc">
-        PianoMate AI is being developed for people who want real piano sound without a permanent player-piano installation.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Home piano owners</h3>
-          <p>Enjoy piano performances at home even when no one is playing live.</p>
-        </div>
-        <div class="card">
-          <h3>Piano stores</h3>
-          <p>Demonstrate real acoustic pianos with automatic performance content.</p>
-        </div>
-        <div class="card">
-          <h3>Content creators</h3>
-          <p>Create visually engaging acoustic piano videos from converted music.</p>
+          <div class="spec"><span>Product name</span><strong>PianoMate AI</strong></div>
+          <div class="spec"><span>Product type</span><strong>External self-playing piano system</strong></div>
+          <div class="spec"><span>Dimensions</span><strong>1288 × 100 × 80 mm</strong></div>
+          <div class="spec"><span>Weight</span><strong>Approx. 11 kg</strong></div>
+          <div class="spec"><span>Connectivity</span><strong>Bluetooth 5.0</strong></div>
+          <div class="spec"><span>Control distance</span><strong>Up to 100 m+ in open conditions</strong></div>
+          <div class="spec"><span>Source formats</span><strong>MP4 / MP3 / WAV / MIDI</strong></div>
+          <div class="spec"><span>Installation</span><strong>External and removable</strong></div>
         </div>
       </div>
     </section>
@@ -683,14 +559,12 @@
         <div>
           <h2 class="section-title">Join the crowdfunding waitlist.</h2>
           <p class="section-desc">
-            Leave your email to receive early-bird updates, prototype progress, demo videos, and launch information.
+            Receive prototype updates, new performance videos, early-bird information, and future crowdfunding launch news.
           </p>
-          <p class="small">
-            We will only use your email for PianoMate AI updates. No spam.
-          </p>
+          <p class="small">Your email will only be used for PianoMate AI updates.</p>
         </div>
 
-        <!-- Replace YOUR_FORM_ID after creating Formspree form -->
+        <!-- Formspree：将 YOUR_FORM_ID 替换成 Formspree 提供的表单 ID。 -->
         <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <input type="text" name="name" placeholder="Your name" />
           <input type="email" name="email" placeholder="Your email address" required />
@@ -713,11 +587,10 @@
           </select>
 
           <textarea name="message" placeholder="What would you like to know about PianoMate AI?"></textarea>
-
           <button type="submit">Join Waitlist</button>
 
           <p class="small">
-            Contact directly: <a href="mailto:xiangbiao1025@gmail.com">xiangbiao1025@gmail.com</a>
+            Direct contact: <a href="mailto:xiangbiao1025@gmail.com">xiangbiao1025@gmail.com</a>
           </p>
         </form>
       </div>
@@ -725,51 +598,28 @@
 
     <section id="faq">
       <h2 class="section-title">FAQ</h2>
-      <p class="section-desc">
-        Early answers for crowdfunding visitors.
-      </p>
+      <p class="section-desc">Early answers for crowdfunding visitors.</p>
 
       <div class="faq">
         <details>
-          <summary>Does PianoMate AI require piano modification?</summary>
-          <p>
-            The current concept is external and non-destructive. It is designed to sit on the piano without permanent structural modification.
-          </p>
+          <summary>Does PianoMate require permanent piano modification?</summary>
+          <p>No. The current concept is external and removable, with no permanent structural alteration to the piano.</p>
         </details>
-
         <details>
-          <summary>Does it play through speakers?</summary>
-          <p>
-            No. PianoMate AI is designed to physically play the piano keys, so the sound comes from the real acoustic piano.
-          </p>
+          <summary>Does it play piano sound through a speaker?</summary>
+          <p>No. The device physically presses the keys, so the music is produced by the real acoustic piano.</p>
         </details>
-
         <details>
-          <summary>What music files can it use?</summary>
-          <p>
-            The current converter workflow is designed around MP4, MP3, WAV, and MIDI sources, with AI-assisted conversion into PianoMate playback data.
-          </p>
+          <summary>What source files can the converter use?</summary>
+          <p>The current desktop workflow supports MP4, MP3, WAV, and MIDI sources, especially piano-focused material.</p>
         </details>
-
         <details>
-          <summary>How heavy is the device?</summary>
-          <p>
-            The current prototype is approximately 11 kg. The weight helps keep the device stable during key actuation.
-          </p>
+          <summary>How heavy is the current device?</summary>
+          <p>The current prototype weighs approximately 11 kg. This helps maintain stability during key actuation.</p>
         </details>
-
         <details>
           <summary>When will crowdfunding launch?</summary>
-          <p>
-            The launch date has not been announced yet. Join the waitlist to receive early-bird updates and prototype progress.
-          </p>
-        </details>
-
-        <details>
-          <summary>Can I become a beta tester?</summary>
-          <p>
-            Yes. Choose “beta testing” in the waitlist form and briefly describe your piano type and use case.
-          </p>
+          <p>A launch date has not yet been announced. Join the waitlist for updates.</p>
         </details>
       </div>
     </section>
@@ -778,7 +628,7 @@
   <footer>
     <strong>PianoMate AI</strong><br />
     External AI self-playing piano system<br />
-    Contact: <a href="mailto:xiangbiao1025@gmail.com">xiangbiao1025@gmail.com</a><br />
+    <a href="mailto:xiangbiao1025@gmail.com">xiangbiao1025@gmail.com</a><br />
     © 2026 PianoMate AI. All rights reserved.
   </footer>
 </body>
