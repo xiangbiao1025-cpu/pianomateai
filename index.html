@@ -223,14 +223,131 @@
     .card h3 { margin: 0 0 11px; font-size: 21px; }
     .card p { margin: 0; color: var(--muted); }
 
-    .steps { counter-reset: step; }
-    .step::before {
-      counter-increment: step;
-      content: "0" counter(step);
-      display: inline-block;
-      margin-bottom: 16px;
+    .how-flow {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+      align-items: stretch;
+    }
+
+    .how-flow::before {
+      content: "";
+      position: absolute;
+      top: 54px;
+      left: 8%;
+      right: 8%;
+      height: 2px;
+      background: linear-gradient(90deg,
+        rgba(217,184,108,.15),
+        rgba(217,184,108,.95),
+        rgba(255,255,255,.95),
+        rgba(217,184,108,.95),
+        rgba(217,184,108,.15));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.4s ease;
+      z-index: 0;
+    }
+
+    .how-flow.is-visible::before { transform: scaleX(1); }
+
+    .flow-step {
+      position: relative;
+      z-index: 1;
+      min-height: 250px;
+      padding: 24px 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease, border-color .3s ease, box-shadow .3s ease;
+      transition-delay: var(--delay, 0ms);
+    }
+
+    .how-flow.is-visible .flow-step {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .flow-step:hover {
+      border-color: rgba(217,184,108,.7);
+      box-shadow: 0 22px 55px rgba(0,0,0,.32);
+    }
+
+    .flow-icon {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: #f5f2ea;
+      color: #111;
+      font-size: 29px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.28);
+      animation: floatIcon 3.2s ease-in-out infinite;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    .flow-step h3 {
+      margin: 0 0 10px;
+      text-align: center;
+      font-size: 19px;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .flow-arrow {
+      position: absolute;
+      top: 42px;
+      right: -24px;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #0b0b0d;
+      border: 1px solid rgba(217,184,108,.55);
       color: var(--gold);
-      font-weight: 800;
+      font-size: 17px;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity .5s ease, transform .5s ease;
+      transition-delay: calc(var(--delay, 0ms) + 380ms);
+    }
+
+    .how-flow.is-visible .flow-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .flow-step:last-child .flow-arrow { display: none; }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .how-flow::before,
+      .flow-step,
+      .flow-arrow,
+      .flow-icon {
+        transition: none;
+        animation: none;
+      }
+      .how-flow::before { transform: scaleX(1); }
+      .flow-step { opacity: 1; transform: none; }
+      .flow-arrow { opacity: 1; transform: none; }
     }
 
     .concept-video {
@@ -418,6 +535,29 @@
     @media (max-width: 900px) {
       .hero, .waitlist { grid-template-columns: 1fr; }
       .grid, .specs { grid-template-columns: 1fr; }
+      .how-flow { grid-template-columns: 1fr; }
+      .how-flow::before {
+        top: 4%;
+        bottom: 4%;
+        left: 31px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+      .how-flow.is-visible::before { transform: scaleY(1); }
+      .flow-step { min-height: auto; padding-left: 88px; }
+      .flow-icon { position: absolute; left: 18px; top: 24px; margin: 0; }
+      .flow-step h3, .flow-step p { text-align: left; }
+      .flow-arrow {
+        top: auto;
+        right: auto;
+        left: 20px;
+        bottom: -24px;
+        transform: translateY(-8px) rotate(90deg);
+      }
+      .how-flow.is-visible .flow-arrow { transform: translateY(0) rotate(90deg); }
       .nav-links { display: none; }
       .hero { padding-top: 65px; }
       .hero-stats { grid-template-columns: 1fr; }
@@ -486,25 +626,45 @@
     </section>
 
     <section id="how">
-      <h2 class="section-title">From a music file to a real piano performance.</h2>
+      <h2 class="section-title">How PianoMate turns a music file into a real piano performance.</h2>
       <p class="section-desc">
-        PianoMate AI combines a desktop conversion workflow with an external piano-playing device.
-        Music is converted into playback data, then PianoMate physically actuates the keys of a real acoustic piano.
+        The entire workflow is designed to be simple: choose a music source, let the desktop AI converter prepare the performance, send the playback data to PianoMate, and hear the result from the real acoustic piano.
       </p>
 
-      <div class="grid steps">
-        <div class="card step">
-          <h3>Upload music</h3>
-          <p>Start with piano-focused MP4, MP3, WAV, or MIDI files.</p>
-        </div>
-        <div class="card step">
-          <h3>AI converts</h3>
-          <p>The desktop AIconverter analyzes the music and prepares PianoMate playback data.</p>
-        </div>
-        <div class="card step">
-          <h3>The real piano plays</h3>
-          <p>PianoMate physically presses the keys, allowing the sound to come from the acoustic piano itself.</p>
-        </div>
+      <div class="how-flow" aria-label="How PianoMate works">
+        <article class="flow-step" style="--delay:0ms">
+          <div class="flow-icon" aria-hidden="true">♪</div>
+          <h3>Choose Music</h3>
+          <p>Start with a piano-focused MP4, MP3, WAV, or MIDI file.</p>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+        </article>
+
+        <article class="flow-step" style="--delay:140ms">
+          <div class="flow-icon" aria-hidden="true">AI</div>
+          <h3>AI Conversion</h3>
+          <p>The desktop converter analyzes timing, notes, and dynamics.</p>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+        </article>
+
+        <article class="flow-step" style="--delay:280ms">
+          <div class="flow-icon" aria-hidden="true">▦</div>
+          <h3>Playback Data</h3>
+          <p>The converted performance is prepared in PianoMate's playback format.</p>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+        </article>
+
+        <article class="flow-step" style="--delay:420ms">
+          <div class="flow-icon" aria-hidden="true">⌁</div>
+          <h3>Send to PianoMate</h3>
+          <p>Use the app and Bluetooth connection to control the performance.</p>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+        </article>
+
+        <article class="flow-step" style="--delay:560ms">
+          <div class="flow-icon" aria-hidden="true">♬</div>
+          <h3>Real Piano Plays</h3>
+          <p>PianoMate physically presses the keys, producing authentic acoustic piano sound.</p>
+        </article>
       </div>
     </section>
 
@@ -647,7 +807,7 @@
           <button type="submit">Join Waitlist</button>
 
           <p class="small">
-            Direct contact: <a href="mailto:xiangbiao1025@gmail.com">xiangbiao1025@gmail.com</a>
+            Direct contact: <a href="mailto:hello@pianomateAI.com">hello@pianomateAI.com</a>
           </p>
         </form>
       </div>
@@ -685,11 +845,24 @@
   <footer>
     <strong>PianoMate</strong><br />
     External self-playing piano system<br />
-    <a href="mailto:xiangbiao1025@gmail.com">xiangbiao1025@gmail.com</a><br />
+    <a href="mailto:hello@pianomateAI.com">hello@pianomateAI.com</a><br />
     © 2026 PianoMate. All rights reserved.
   </footer>
 
   <script>
+    const howFlow = document.querySelector('.how-flow');
+    if (howFlow) {
+      const flowObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.28 });
+      flowObserver.observe(howFlow);
+    }
+
     document.querySelectorAll('.inline-video-trigger').forEach((trigger) => {
       trigger.addEventListener('click', () => {
         const videoId = trigger.dataset.videoId;
